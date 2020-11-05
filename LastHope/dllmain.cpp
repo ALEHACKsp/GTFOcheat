@@ -1,6 +1,6 @@
 #include "dllmain.h"
-#include <vector>
-#include "Memory.h"
+
+
 #ifdef DEBUG
 
 #define ALLOCCONSOLE()\
@@ -33,15 +33,12 @@ DWORD WINAPI fMain(LPVOID lpParameter)
     modules::Initialize();
     LOGHEX("GameAssembly.dll", modules::GameAssembly)
 
-    std::vector<std::ptrdiff_t> offsets = {0xB8, 0x68, 0x20, 0x90, 0x220};
-    int* DynamicAmmo = memory::ResolvePointer<int>(modules::GameAssembly + 0x02A08718, offsets);
-
     while(true)
     {
         if (GetAsyncKeyState(VK_DELETE) & 1) break;
 
-        *DynamicAmmo = 101;
-        std::cout << *DynamicAmmo << std::endl;
+        static std::vector<std::ptrdiff_t> WeaponBaseOffsets = {0xB8, 0x68, 0x20, 0x90};
+        auto* WeaponBase = memory::ResolvePointer<uintptr_t>(modules::GameAssembly + 0x02A08718, WeaponBaseOffsets);
 
         Sleep(10);
     }

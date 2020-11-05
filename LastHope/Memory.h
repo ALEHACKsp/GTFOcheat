@@ -11,6 +11,10 @@ namespace memory {
             buffer += offset;
         }
         return reinterpret_cast<t*>(buffer);
+    }
 
+    template<class t>
+    t* ResolvePointer(const uintptr_t& base, const std::ptrdiff_t& offset) {
+        return reinterpret_cast<t*>(base + offset);
     }
 }

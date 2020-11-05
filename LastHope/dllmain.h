@@ -3,3 +3,5 @@
 #include <iostream>
 #include "DebugMessage.h"
 #include "Modules.h"
+#include <vector>
+#include "Memory.h"

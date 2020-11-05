@@ -4,6 +4,9 @@
 
 #ifdef DEBUG
 #define LOGHEX(name, val) std::cout << name << ": " << std::hex << val << std::endl;
+#define LOGDECIMAL(name, val) std::cout << name << ": " << std::dec << val << std::endl;
+
+
 #define ALLOCCONSOLE()\
 {\
     AllocConsole();\
@@ -16,6 +19,7 @@
 }
 #else
 #define LOGHEX(name, val)
+#define LOGDECIMAL(name, val)
 #define ALLOCCONSOLE()
 #define FREECONSOLE()
 #endif
